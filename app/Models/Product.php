@@ -16,4 +16,9 @@ class Product extends Model
         'price',
         'is_public',
     ];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

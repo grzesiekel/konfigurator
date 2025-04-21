@@ -54,7 +54,7 @@ class ProductResource extends Resource
                 Forms\Components\TextInput::make('price')
                     ->required()
                     ->numeric()
-                    ->prefix('$'),
+                    ->prefix('pln'),
                 Forms\Components\Toggle::make('is_public')
                     ->required(),
             ]);
@@ -79,7 +79,7 @@ class ProductResource extends Resource
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('price')
-                    ->money()
+                    ->money('PLN')
                     ->sortable(),
                 Tables\Columns\IconColumn::make('is_public')
                     ->boolean(),
