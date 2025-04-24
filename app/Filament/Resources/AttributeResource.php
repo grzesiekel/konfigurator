@@ -53,6 +53,25 @@ class AttributeResource extends Resource
                 Forms\Components\TextInput::make('max')
                     ->numeric()
                     ->default(null),
+                Forms\Components\Repeater::make('items')
+
+                    ->relationship('items')
+                    ->schema([
+                        Forms\Components\TextInput::make('value')
+                            ->label('wartość')
+                            ->required()
+                            ->maxLength(255),
+                        // Forms\Components\Repeater::make('children')
+                        //     ->label('podpozycja')
+                        //     ->relationship('children')
+                        //     ->schema([
+                        //         Forms\Components\TextInput::make('value')
+                        //             ->required()
+                        //             ->maxLength(255),
+                        //     ])
+                        //     ->collapsible()
+                    ])
+                    ->collapsible()
             ]);
     }
 

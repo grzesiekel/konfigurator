@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Str;
 
+
 class ProductResource extends Resource
 {
     protected static ?string $model = Product::class;
@@ -57,6 +58,10 @@ class ProductResource extends Resource
                     ->prefix('pln'),
                 Forms\Components\Toggle::make('is_public')
                     ->required(),
+                Forms\Components\FileUpload::make('image')
+                    ->directory('product_img')
+                    ->image()
+                    ->maxSize(1024) // Maksymalnie 1MB
             ]);
     }
 
@@ -64,6 +69,7 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('sku')
@@ -108,7 +114,7 @@ class ProductResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\AttributesRelationManager::class,
         ];
     }
 

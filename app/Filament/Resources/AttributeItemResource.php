@@ -5,6 +5,8 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\AttributeItemResource\Pages;
 use App\Filament\Resources\AttributeItemResource\RelationManagers;
 use App\Models\AttributeItem;
+use App\Models\Attribute;
+
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,6 +14,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Filters\SelectFilter;
 
 class AttributeItemResource extends Resource
 {
@@ -23,15 +26,18 @@ class AttributeItemResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('attribute_id')
-                    ->numeric()
-                    ->default(null),
+                Forms\Components\Select::make('attribute_id')
+                    ->label('Produkt')
+                    ->options(Attribute::pluck('name', 'id'))
+                    ->searchable()
+                    ->required(),
                 Forms\Components\TextInput::make('value')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('image')
+                    ->directory('img')
                     ->image()
-                    ->required(),
+                    ->maxSize(1024) // Maksymalnie 1MB
             ]);
     }
 
@@ -55,7 +61,11 @@ class AttributeItemResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                SelectFilter::make('attribute_id')
+                    ->label('Attribute') // Etykieta filtra
+                    ->relationship('attribute', 'name') // Relacja + pole wyświetlane w opcjach
+                    ->searchable() // Opcjonalnie: wyszukiwanie
+                    ->preload(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

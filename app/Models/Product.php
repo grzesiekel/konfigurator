@@ -8,6 +8,7 @@ class Product extends Model
 {
     protected $fillable = [
         'name',
+        'image',
         'sku',
         'formula',
         'slug',
@@ -16,6 +17,11 @@ class Product extends Model
         'price',
         'is_public',
     ];
+
+    public function attributes()
+    {
+        return $this->belongsToMany(Attribute::class);
+    }
 
     public function getRouteKeyName()
     {
