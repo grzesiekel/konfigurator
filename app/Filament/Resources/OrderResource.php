@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\OrderResource\Pages;
 use App\Filament\Resources\OrderResource\RelationManagers;
 use App\Models\Order;
+use App\Models\Product;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -28,7 +29,7 @@ class OrderResource extends Resource
                     ->label('Numer')
                     ->disabled()
                     ->dehydrated(false)
-                    ->visible(fn ($record) => $record && $record->exists),
+                    ->visible(fn($record) => $record && $record->exists),
                 Forms\Components\TextInput::make('name')
                     ->maxLength(255)
                     ->default(null),
@@ -40,7 +41,7 @@ class OrderResource extends Resource
                     ->tel()
                     ->maxLength(255)
                     ->default(null),
-                    Forms\Components\Select::make('status')
+                Forms\Components\Select::make('status')
                     ->label('Status')
                     ->options([
                         'pending' => 'Oczekujące',
@@ -51,9 +52,11 @@ class OrderResource extends Resource
                     ])
                     ->default('pending')
                     ->required(),
-                Forms\Components\TextInput::make('product_id')
-                    ->numeric()
-                    ->default(null),
+                Forms\Components\Select::make('product_id')
+                    ->label('Produkt')
+                    ->options(Product::pluck('name', 'id'))
+                    ->searchable()
+                    ->required(),
                 Forms\Components\Textarea::make('notes')
                     ->columnSpanFull(),
             ]);
@@ -71,7 +74,7 @@ class OrderResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('phone')
                     ->searchable(),
-                    Tables\Columns\SelectColumn::make('status')
+                Tables\Columns\SelectColumn::make('status')
                     ->label('Status')
                     ->options([
                         'pending' => 'Oczekujące',
@@ -82,9 +85,9 @@ class OrderResource extends Resource
                     ])
                     ->searchable()
                     ->disablePlaceholderSelection(),
-                Tables\Columns\TextColumn::make('product_id')
-                    ->numeric()
-                    ->sortable(),
+                Tables\Columns\TextColumn::make('product.name')
+                    ->label('Nazwa produktu')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

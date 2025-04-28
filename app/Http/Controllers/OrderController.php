@@ -9,21 +9,23 @@ class OrderController extends Controller
 {
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'product_id' => 'required|exists:products,id',
-            'cart' => 'required|array',
+        if (!empty($request->honeypot)) {
+            return redirect()->back()->withErrors(['spam' => 'Bot detected']);
+        }
+       
+        $validatedData = $request->validate([
+            'cart' => 'required|json',
+           'product_id' => 'required|string',
         ]);
 
         $order = Order::create([
-            'product_id' => $validated['product_id'],
-            'cart' => json_encode($validated['cart']),
+            'product_id' => $validatedData['product_id'],
+            'cart' => $validatedData['cart'],
          
         ]);
 
-        return response()->json([
-            'success' => true,
-            'order' => $order,
-            'redirect_url' => route('order.summary', $order),
-        ]);
+        // return redirect()->route('order.show', ['order' => $order]);
+        return back();
+
     }
 }

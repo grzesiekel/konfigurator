@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
-            $table->string('status');
+            $table->string('status')->default('pending');
             $table->json('cart')->nullable();
             $table->foreignId('product_id')->nullable()->constrained()->onDelete('set null');
             $table->longText('notes')->nullable();
