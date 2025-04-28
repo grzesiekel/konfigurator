@@ -14,12 +14,17 @@ use Filament\Tables\Table;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Select;
+use Filament\Tables\Filters\Filter;
 
 class OrderResource extends Resource
 {
     protected static ?string $model = Order::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?int $navigationSort = 1;
+    protected static ?string $navigationGroup = 'Sklep';
 
     public static function form(Form $form): Form
     {
@@ -68,12 +73,12 @@ class OrderResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('number')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('email')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('phone')
-                    ->searchable(),
+                // Tables\Columns\TextColumn::make('name')
+                //     ->searchable(),
+                // Tables\Columns\TextColumn::make('email')
+                //     ->searchable(),
+                // Tables\Columns\TextColumn::make('phone')
+                //     ->searchable(),
                 Tables\Columns\SelectColumn::make('status')
                     ->label('Status')
                     ->options([
@@ -106,6 +111,27 @@ class OrderResource extends Resource
                         'closed' => 'Zakończone',
                         'declined' => 'Odrzucone',
                     ]),
+                SelectFilter::make('product_id')
+                    ->options(Product::pluck('name', 'id')),
+                    Filter::make('created_at')
+                    ->form([
+                        DatePicker::make('created_from')
+                            ->label('Od daty'),
+                        DatePicker::make('created_until')
+                            ->label('Do daty'),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['created_from'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('created_at', '>=', $date),
+                            )
+                            ->when(
+                                $data['created_until'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('created_at', '<=', $date),
+                            );
+                    }),
+            
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

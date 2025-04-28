@@ -22,6 +22,9 @@ class AttributeItemResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?int $navigationSort = 4;
+    protected static ?string $navigationGroup = 'Ustawienia';
+
     public static function form(Form $form): Form
     {
         return $form
