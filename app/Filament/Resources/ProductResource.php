@@ -6,11 +6,14 @@ use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Product;
 use Filament\Forms;
+
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Str;
 
@@ -55,6 +58,7 @@ class ProductResource extends Resource
                 Forms\Components\TextInput::make('quantity')
                     ->numeric()
                     ->default(null),
+                Forms\Components\TextInput::make('site_url'),
                 Forms\Components\TextInput::make('price')
                     ->required()
                     ->numeric()
@@ -106,6 +110,12 @@ class ProductResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Action::make('print')
+                    ->label('strona')
+                    ->icon('heroicon-o-link')
+                    ->url(fn (Model $record): string => route('product.index', $record->slug))
+                    ->openUrlInNewTab()
+                    ->visible(true)
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

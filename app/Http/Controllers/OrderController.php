@@ -24,8 +24,15 @@ class OrderController extends Controller
          
         ]);
 
-        // return redirect()->route('order.show', ['order' => $order]);
-        return back();
+        return redirect()->route('order.show', ['order' => $order]);
 
+    }
+    public function show(Order $order)
+    {
+        if (!$order) {
+            abort(404);
+        }
+        
+        return view('templates.summary', compact('order'));
     }
 }

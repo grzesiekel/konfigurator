@@ -10,3 +10,4 @@ Route::get('/', function () {
 
 Route::get('/produkt/{product:slug}', [ProductController::class, 'index'])->name('product.index');
 Route::post('/orders', [OrderController::class, 'store'])->name('order.store');
+Route::get('/podsumowanie/{order:number}', [OrderController::class, 'show'])->name('order.show');

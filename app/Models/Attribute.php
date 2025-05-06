@@ -21,7 +21,7 @@ class Attribute extends Model
         return $this->belongsToMany(Product::class);
     }
 
-    protected $casts = [
-        'type' => AttributeType::class,
-    ];
+    // protected $casts = [
+    //     'type' => AttributeType::class,
+    // ];
 }
