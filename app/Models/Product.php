@@ -16,7 +16,8 @@ class Product extends Model
         'template_name',
         'price',
         'is_public',
-        'site_url'
+        'site_url',
+        'display_name'
     ];
 
     public function attributes()

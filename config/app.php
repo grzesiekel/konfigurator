@@ -123,4 +123,7 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    //Site title
+    'title'=>env('APP_TITLE', 'konfigurator')
+
 ];

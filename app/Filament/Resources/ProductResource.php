@@ -27,6 +27,11 @@ class ProductResource extends Resource
     protected static ?int $navigationSort = 2;
     protected static ?string $navigationGroup = 'Ustawienia';
 
+    public static function getPluralModelLabel(): string
+    {
+        return 'Produkty';
+    }
+
     public static function form(Form $form): Form
     {
         return $form
@@ -42,6 +47,10 @@ class ProductResource extends Resource
                 }),
                 Forms\Components\TextInput::make('sku')
                     ->label('SKU')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('display_name')
+                    ->label('Nazwa wyświetlana')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('slug')

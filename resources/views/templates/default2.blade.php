@@ -35,7 +35,7 @@
                 </ol>
             </div>
             
-            <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl">{{$product->name}}</h1>
+            <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl">{{$product->view}}</h1>
 
             <div class="mt-6 sm:mt-8 lg:flex lg:gap-8">
                 <!-- Formularz -->
@@ -102,7 +102,7 @@
                                                 class="absolute opacity-0 w-full h-full cursor-pointer" />
                                             <div class="w-16 h-16 border rounded-md overflow-hidden"
                                                 :class="{'ring-2 ring-custom-blue': product.{{$attribute->name}} === '{{$item->value}}'}">
-                                                <img src="{{$item->image}}" alt="{{$item->value}}" class="w-full h-full object-cover">
+                                                <img src="{{ asset('img/' . $item->image) }}" alt="{{$item->value}}" class="w-full h-full object-cover">
                                             </div>
                                         </div>
                                         <label for="{{$attribute->name}}_{{$item->value}}"

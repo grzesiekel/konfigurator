@@ -25,6 +25,11 @@ class AttributeItemResource extends Resource
     protected static ?int $navigationSort = 4;
     protected static ?string $navigationGroup = 'Ustawienia';
 
+    public static function getPluralModelLabel(): string
+    {
+        return 'Elementy atrybutów';
+    }
+
     public static function form(Form $form): Form
     {
         return $form

@@ -7,7 +7,7 @@
     @endphp
 
 
-
+<div class="flex items-center justify-center min-h-screen">
     <div class="max-w-4xl mx-auto p-6 bg-white rounded-2xl shadow-xl my-8 transform transition-all duration-300 hover:shadow-2xl" x-data="summaryData()">
         <!-- Nagłówek z ikoną -->
         <div class="flex items-center mb-6">
@@ -73,9 +73,9 @@
                 <!-- Metoda płatności -->
                 <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
                     <h3 class="text-lg font-semibold text-gray-700 mb-4 flex items-center">
-                    <svg class="h-5 w-5 text-custom-blue mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-            </svg>
+                        <svg class="h-5 w-5 text-custom-blue mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
                         Do skopiowania
                     </h3>
                     <div class="flex items-center space-x-3">
@@ -108,64 +108,64 @@
 
                 <!-- Jak dokonać zakupu -->
                 <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
-    <h3 class="text-lg font-semibold text-gray-700 mb-4 flex items-center">
-        <svg class="h-5 w-5 text-custom-gran mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-        </svg>
-        Jak dokonać zakupu
-    </h3>
-    <ul class="space-y-3">
-        <li class="flex items-start">
-            <svg class="h-5 w-5 text-custom-blue mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-            </svg>
-            <span class="text-gray-600">Przejdź na stronę produktu</span>
-        </li>
-        <li class="flex items-start">
-            <svg class="h-5 w-5 text-custom-blue mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-            </svg>
-            <span class="text-gray-600" x-text="`Dodaj do koszyka ${totalRunningMeters.toFixed(0)} sztuk`"></span>
-        </li>
-        <li class="flex items-start">
-            <svg class="h-5 w-5 text-custom-blue mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-            </svg>
-            <span class="text-gray-600">Przejdź do formularza dostawy</span>
-        </li>
-        <li class="flex items-start">
-            <svg class="h-5 w-5 text-custom-blue mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-            </svg>
-            <span class="text-gray-600" x-text="`W uwagach do zamówienia wpisz kod: ${number}`"></span>
-        </li>
-    </ul>
-</div>
+                    <h3 class="text-lg font-semibold text-gray-700 mb-4 flex items-center">
+                        <svg class="h-5 w-5 text-custom-gran mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        Jak dokonać zakupu
+                    </h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <svg class="h-5 w-5 text-custom-blue mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-gray-600">Przejdź na stronę produktu</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="h-5 w-5 text-custom-blue mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-gray-600" x-text="`Dodaj do koszyka ${totalRunningMeters.toFixed(0)} sztuk`"></span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="h-5 w-5 text-custom-blue mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-gray-600">Przejdź do formularza dostawy</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="h-5 w-5 text-custom-blue mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-gray-600" x-text="`W uwagach do zamówienia wpisz kod: ${number}`"></span>
+                        </li>
+                    </ul>
+                </div>
 
                 <!-- Przyciski akcji -->
                 <div class="space-y-3">
-                <a href="{{$order->product->site_url}}" target="_blank" 
-   class="w-full px-6 py-3 bg-gradient-to-r from-custom-blue to-custom-gran text-white font-medium rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center group">
-    <svg class="h-5 w-5 mr-2 text-white group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-    </svg>
-    <span class="group-hover:scale-105 transition-transform">Strona produktu</span>
-</a>
-                   
+                    <a href="{{$order->product->site_url}}" target="_blank"
+                        class="w-full px-6 py-3 bg-gradient-to-r from-custom-blue to-custom-gran text-white font-medium rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center group">
+                        <svg class="h-5 w-5 mr-2 text-white group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                        </svg>
+                        <span class="group-hover:scale-105 transition-transform">Strona produktu</span>
+                    </a>
+
                     <a href="{{ url('/produkt/' . $order->product->slug) }}" class="w-full px-6 py-3 bg-white border border-custom-blue/30 text-custom-blue font-medium rounded-xl hover:bg-custom-blue/5 transition duration-150 flex items-center justify-center">
-                        
+
                         <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                         </svg>
                         Wróć do konfiguratora
-                        
-</a>
-                  
+
+                    </a>
+
                 </div>
             </div>
         </div>
     </div>
-
+    </div>
     <script>
         function summaryData() {
             return {
@@ -173,7 +173,7 @@
                 cart: JSON.parse('{!! $cart !!}'),
                 formula: '{!! $product->formula !!}',
                 price: '{!! $product->price !!}',
-                number:'{!! $order->number !!}',
+                number: '{!! $order->number !!}',
 
                 getProductName(item) {
                     // Get sorted attributes by order
