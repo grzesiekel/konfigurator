@@ -36,7 +36,9 @@ class AttributesRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                Tables\Actions\AttachAction::make(),
+                Tables\Actions\AttachAction::make()
+                    ->recordSelectSearchColumns(['display_name'])
+                    ->recordTitle(fn($record) => $record->display_name),
             ])
             ->actions([
                 Tables\Actions\DetachAction::make(), // Tylko akcja odłączania
