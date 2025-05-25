@@ -102,7 +102,7 @@
                                                 class="absolute opacity-0 w-full h-full cursor-pointer" />
                                             <div class="w-16 h-16 border rounded-md overflow-hidden"
                                                 :class="{'ring-2 ring-custom-blue': product.{{$attribute->name}} === '{{$item->value}}'}">
-                                                <img src="{{ asset('img/' . $item->image) }}" alt="{{$item->value}}" class="w-full h-full object-cover">
+                                                <img src="{{ asset('storage/' . $item->image) }}" alt="{{$item->value}}" class="w-full h-full object-cover">
                                             </div>
                                         </div>
                                         <label for="{{$attribute->name}}_{{$item->value}}"
