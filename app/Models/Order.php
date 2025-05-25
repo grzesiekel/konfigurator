@@ -24,7 +24,7 @@ class Order extends Model
 
     protected $casts = [
         'status' => 'string',
-        'source'=>'string',
+        'source' => 'string',
         'cart' => 'array',
     ];
 
@@ -55,8 +55,12 @@ class Order extends Model
         $latestNumber = $latestOrder ? intval(substr($latestOrder->number, -3)) : 0;
         $nextNumber = $latestNumber + 1;
 
-        $letters = chr(65 + ($nextNumber - 1) % 26); // Generuj literę od A do Z
+        // Lista dozwolonych liter (A-Z bez I i O)
+        $allowedLetters = array_diff(range('A', 'Z'), ['I', 'O']);
+        $allowedLetters = array_values($allowedLetters); // Reset indeksów
+        $letterIndex = ($nextNumber - 1) % count($allowedLetters);
+        $letter = $allowedLetters[$letterIndex];
 
-        return $year . $month . $letters . str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
+        return $year . $month . $letter . str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
     }
 }
