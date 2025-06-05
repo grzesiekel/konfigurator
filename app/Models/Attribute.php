@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Attribute extends Model
 {
 
-    protected $fillable = ['name', 'type','display_name','short_name','unit','order','min','max'];
+    protected $fillable = ['name','search_name', 'type','display_name','short_name','unit','order','min','max'];
 
     public function items()
     {

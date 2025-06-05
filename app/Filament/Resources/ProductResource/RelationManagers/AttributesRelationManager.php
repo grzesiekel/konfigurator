@@ -30,15 +30,15 @@ class AttributesRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('name')
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('search_name'),
             ])
             ->filters([
                 //
             ])
             ->headerActions([
                 Tables\Actions\AttachAction::make()
-                    ->recordSelectSearchColumns(['display_name'])
-                    ->recordTitle(fn($record) => $record->display_name),
+                    ->recordSelectSearchColumns(['search_name'])
+                    ->recordTitle(fn($record) => $record->search_name),
             ])
             ->actions([
                 Tables\Actions\DetachAction::make(), // Tylko akcja odłączania

@@ -22,7 +22,7 @@ class AttributeResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?int $navigationSort = 3;
-    protected static ?string $navigationGroup = 'Ustawienia';
+    protected static ?string $navigationGroup = 'Ustawienia produktu';
 
     public static function getPluralModelLabel(): string
     {
@@ -34,6 +34,9 @@ class AttributeResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('search_name')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('display_name')
@@ -89,22 +92,9 @@ class AttributeResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('display_name')
+                Tables\Columns\TextColumn::make('search_name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('type'),
-                Tables\Columns\TextColumn::make('short_name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('unit')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('order')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('min')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('max')
-                    ->numeric()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

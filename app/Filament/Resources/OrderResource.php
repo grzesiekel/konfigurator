@@ -26,10 +26,12 @@ class OrderResource extends Resource
     protected static ?int $navigationSort = 1;
     protected static ?string $navigationGroup = 'Sklep';
 
-    public static function getPluralModelLabel(): string
+    public static function getModelLabel(): string
     {
-        return 'Zamówienia';
+        return __('Zamówienia') . ' (' . static::getModel()::count() . ')';
     }
+
+  
 
     public static function form(Form $form): Form
     {
@@ -118,7 +120,7 @@ class OrderResource extends Resource
                     ]),
                 SelectFilter::make('product_id')
                     ->options(Product::pluck('name', 'id')),
-                    Filter::make('created_at')
+                Filter::make('created_at')
                     ->form([
                         DatePicker::make('created_from')
                             ->label('Od daty'),
@@ -129,14 +131,14 @@ class OrderResource extends Resource
                         return $query
                             ->when(
                                 $data['created_from'],
-                                fn (Builder $query, $date): Builder => $query->whereDate('created_at', '>=', $date),
+                                fn(Builder $query, $date): Builder => $query->whereDate('created_at', '>=', $date),
                             )
                             ->when(
                                 $data['created_until'],
-                                fn (Builder $query, $date): Builder => $query->whereDate('created_at', '<=', $date),
+                                fn(Builder $query, $date): Builder => $query->whereDate('created_at', '<=', $date),
                             );
                     }),
-            
+
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
