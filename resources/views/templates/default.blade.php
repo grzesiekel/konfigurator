@@ -194,7 +194,7 @@
                         </template>
                     </div>
                 </div>
-
+ 
                 <!-- Podsumowanie -->
                 <div class="mt-8 lg:mt-0 lg:w-1/3">
                     <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
@@ -240,7 +240,7 @@
                         </template>
 
                         <template x-if="cart.length > 0">
-                            <form action="{{ route('order.store') }}" method="POST" @submit="onSubmitOrder" class="mt-6">
+                            <form action="{{ route('order.store') }}" method="POST" @submit="onSubmitOrder" class="mt-6" x-on:submit="submitting = true">
                                 @csrf
                                 <input type="hidden" name="cart" :value="JSON.stringify(cart)">
                                 <input type="hidden" name="totalRunningMeters" :value="totalRunningMeters.toFixed(2)">
@@ -250,12 +250,21 @@
                                 <button type="submit" class=" w-full px-5 py-3 bg-gradient-to-r from-custom-blue to-custom-gran text-white font-medium rounded-lg text-sm shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200">
                                     Wyślij formularz
                                 </button>
+            
                             </form>
+   
                         </template>
+                                                                   
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Loader poza formularzem -->
+        <template x-if="submitting">
+            <div class="loader-overlay">
+                <div class="loader"></div>
+            </div>
+        </template> 
     </section>
 
     <script>
@@ -270,6 +279,7 @@
                 price: '{!! $price !!}',
                 step: 1,
                 editingIndex: null,
+                submitting:false,
 
                 init() {
                     // Load cart for specific product
@@ -473,9 +483,11 @@
 
                 onSubmitOrder() {
                     this.step = 3;
+                    this.submitting=true;
                     this.$nextTick(() => {
                         this.clearCart();
                     });
+                    
                 }
             }
         }
