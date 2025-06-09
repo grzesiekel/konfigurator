@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'baselinker' => [
+    'token' => env('BASELINKER_TOKEN'),
+]
+
 ];
