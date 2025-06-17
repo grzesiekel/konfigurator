@@ -7,6 +7,7 @@ use App\Filament\Resources\OrderResource\RelationManagers;
 use App\Models\Order;
 use App\Models\Product;
 use Filament\Forms;
+use Filament\Forms\Components\Component;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -15,8 +16,14 @@ use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Group;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Filters\Filter;
+use Illuminate\Database\Eloquent\Model;
 
 class OrderResource extends Resource
 {
@@ -30,6 +37,8 @@ class OrderResource extends Resource
     {
         return __('Zamówienia') . ' (' . static::getModel()::count() . ')';
     }
+
+
 
   
 
@@ -142,6 +151,13 @@ class OrderResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                
+                Action::make('print')
+                    ->label('Drukuj')
+                    ->icon('heroicon-o-printer')
+                    ->url(fn (Model $record): string => route('admin.order.print', $record->number))
+                    ->openUrlInNewTab()
+                    ->visible(true)
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

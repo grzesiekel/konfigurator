@@ -35,4 +35,14 @@ class OrderController extends Controller
         
         return view('templates.summary', compact('order'));
     }
+
+     public function print(Order $order)
+    {
+        $cartData = json_decode($order->cart,true);
+        $order = $order;
+
+       
+
+        return view('admin.print', compact('cartData','order'));
+    }
 }
